@@ -8,22 +8,20 @@ export const fetchBooksRequest = () => ({
     type: FETCH_BOOKS_REQUEST,
 });
 
-export const fetchBooksSuccess = (books) => ({
+export const fetchBooksSuccess = (state) => ({
     type: FETCH_BOOKS_SUCCESS,
-    payload: books,
+    payload: state,
 });
 
 export const fetchBooksFailure = (error) => ({
     type: FETCH_BOOKS_FAILURE,
     payload: error,
 });
-
-
 export const searchBooks = (query) => {
     return async (dispatch) => {
         try {
             dispatch(fetchBooksRequest());
-            const response = await fetch(`API_ENDPOINT_HERE`);
+            const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=AIzaSyBfPxAUt4A1zpmU1AxDtsiWaWyAYqQQP6g`);
             const data = await response.json();
             dispatch(fetchBooksSuccess(data));
         } catch (error) {

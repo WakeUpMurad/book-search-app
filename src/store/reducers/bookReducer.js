@@ -1,5 +1,3 @@
-// store/reducers/bookReducer.js
-
 import {
     FETCH_BOOKS_REQUEST,
     FETCH_BOOKS_SUCCESS,
@@ -7,9 +5,10 @@ import {
 } from '../actions/bookActions';
 
 const initialState = {
-    books: [],
+    items: [],
     loading: false,
     error: null,
+    totalItems: 0
 };
 
 const bookReducer = (state = initialState, action) => {
@@ -18,20 +17,19 @@ const bookReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: true,
-                error: null, // Clear any previous errors when starting a new request
+                error: null,
             };
         case FETCH_BOOKS_SUCCESS:
             return {
-                ...state,
+                ...action.payload,
                 loading: false,
-                books: action.payload,
-                error: null, // Clear any previous errors on success
+                error: null,
             };
         case FETCH_BOOKS_FAILURE:
             return {
                 ...state,
                 loading: false,
-                error: action.payload, // Store the error message in the state
+                error: action.payload,
             };
         default:
             return state;

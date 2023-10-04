@@ -1,14 +1,10 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
-import { searchBooks } from '../../store/actions/bookActions'; // Assuming you have an action for searching books
-
+import { searchBooks } from '../../store/actions/bookActions';
+import searchImg from '../../assets/icons/search-icon.svg'
 const SearchBar = () => {
     const [query, setQuery] = useState('');
     const dispatch = useDispatch();
-
-    const handleInputChange = (event) => {
-        setQuery(event.target.value);
-    };
 
     const handleSearch = () => {
         if (query.trim() !== '') {
@@ -26,14 +22,36 @@ const SearchBar = () => {
 
     return (
         <div className="search-bar">
-            <input
-                type="text"
-                placeholder="Search for books"
-                value={query}
-                onChange={handleInputChange}
-                onKeyPress={handleKeyPress}
-            />
-            <button onClick={handleSearch}>Search</button>
+            <label>
+                <input
+                    type="text"
+                    placeholder="Search for books"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                />
+                <button onClick={handleSearch} >
+                    <img src={searchImg} alt={'img'}/>
+                </button>
+            </label>
+            <label>
+                Categories:
+                <select>
+                    <option>all</option>
+                    <option>art</option>
+                    <option>biography</option>
+                    <option>computers</option>
+                    <option>history</option>
+                    <option>medical</option>
+                    <option>poetry</option>
+                </select>
+            </label>
+            <label>
+                Sorting by:
+                <select>
+                    <option>relevance</option>
+                    <option>newest</option>
+                </select>
+            </label>
         </div>
     );
 };

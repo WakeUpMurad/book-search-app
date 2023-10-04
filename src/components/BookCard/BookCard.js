@@ -1,15 +1,16 @@
 import React from 'react';
 
 const BookCard = ({ book }) => {
-    const { title, authors, categories, imageLink } = book;
+
+    console.log(book)
 
     return (
         <div className="book-card">
-            <img src={imageLink} alt={`Cover for ${title}`} />
+            <img src={book.volumeInfo.imageLinks.smallThumbnail} alt={`Cover for ${book.volumeInfo.title}`} />
             <div className="book-details">
-                <h3>{title}</h3>
-                <p>Category: {categories.length > 0 ? categories[0] : 'N/A'}</p>
-                <p>Authors: {authors.join(', ')}</p>
+                <h3> {book.volumeInfo.categories}</h3>
+                <h4>{book.volumeInfo.title}</h4>
+                <h4>{book.volumeInfo.authors}</h4>
             </div>
         </div>
     );

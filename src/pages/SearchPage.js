@@ -1,21 +1,37 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import SearchBar from '../components/SearchBar/SearchBar'
-import CategorySelector from '../components/CategorySelector/CategorySelector'
-import SortingSelector from '../components/SortingSelector/SortingSelector'
 import SearchResults from '../components/SearchResults/SearchResults'
-import Pagination from '../components/Pagination/Pagination'
+import {connect} from "react-redux";
+import {fetchBooksRequest} from "../store/actions/bookActions";
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import ErrorHandling from "../components/ErrorHandling";
 
-const SearchPage = () => {
+const SearchPage = ({items, totalItems}) => {
+    const dispatch = useDispatch();
+    const fetchData = () => {
+        dispatch(fetchBooksRequest());
+    };
+    useEffect(() => {
+        console.log(items)
+    }, []);
+
+    const error = useSelector((state) => state.error);
+
     return (
         <div className="searchPage">
             <h1>Search for books</h1>
             <SearchBar />
-            <CategorySelector />
-            <SortingSelector />
-            <SearchResults />
-            <Pagination />
+            <SearchResults books={items} totalResults={totalItems} />
+            {error && <ErrorHandling error={error} />}
         </div>
     );
 };
 
-export default SearchPage;
+const mapStateToProps = (state) => {
+    return {
+        items: state.books.items,
+        totalItems: state.books.totalItems
+    }
+};
+export default connect(mapStateToProps, {fetchBooksRequest})(SearchPage);

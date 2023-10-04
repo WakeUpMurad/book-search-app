@@ -4,7 +4,7 @@ import ErrorHandling from './ErrorHandling';
 import { useDispatch } from 'react-redux';
 import { fetchBooksRequest, fetchBooksSuccess, fetchBooksFailure } from '../store/actions/bookActions';
 
-const YourComponent = ({ books }) => {
+const Component = ({ books }) => {
     const dispatch = useDispatch();
 
     const fetchData = () => {
@@ -14,15 +14,16 @@ const YourComponent = ({ books }) => {
     };
     const error = useSelector((state) => state.books.error);
 
-    const mapStateToProps = (state) => {
-        return (
-            <div className="your-component">
-                {/* Your component content here */}
-                {error && <ErrorHandling error={error} />}
-            </div>
-        )
-
-    };
+    return (
+        <div className="your-component">
+            {/* Your component content here */}
+            {error && <ErrorHandling error={error} />}
+        </div>
+    )
 };
-
-export default connect(mapStateToProps)(YourComponent);
+const mapStateToProps = (state) => {
+    return {
+        books: state.books,
+    }
+};
+export default connect(mapStateToProps, {fetchBooksRequest})(Component);

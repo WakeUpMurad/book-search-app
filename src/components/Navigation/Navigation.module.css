@@ -1,0 +1,19 @@
+.navigation {
+    background-color: #333;
+    color: #fff;
+}
+
+.nav__ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+.nav__list {
+    margin: 0 20px;
+}
+
+.nav__link {
+    text-decoration: none;
+    color: #fff;
+}

@@ -1,13 +1,63 @@
-body {
+*,
+*::before,
+*::after {
+  font-size: calc(1vw + 0.5rem);
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  user-select: none;
+  text-decoration: none;
+  list-style: none;
+  outline: none;
+  box-sizing: border-box;
+  --light-rgb: 250, 150, 0;
+  --bg-opacity: 1;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html,
+body {
+  margin: 0;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 1rem;
+  line-height: 1;
+  background-color: #f9fafb;
+  color: #333;
+  overflow-x: hidden;
 }
+body._lock {
+  overflow: hidden;
+}
+.container {
+  max-width: 1320px;
+}
+
+input {
+  width: 100%;
+  padding-left: 0.5rem;
+  user-select: none;
+  border-radius: 1rem;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+input::placeholder {
+  font-size: 1rem;
+}
+
+
+/* For small screens (e.g., mobile devices) */
+@media (max-width: 767px) {
+  /* Adjust your styles here */
+}
+
+/* For medium screens (e.g., tablets) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Adjust your styles here */
+}
+
+/* For large screens (e.g., desktop) */
+@media (min-width: 1024px) {
+  /* Adjust your styles here */
+}
+
